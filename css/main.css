@@ -62,25 +62,49 @@ select:focus {
 }
 
 /*--------------------- Header --------------------*/
-.header_bar {
+header,
+footer {
     position: fixed;
-    height: 4.75em;
-    inset: 0;
-
     padding-inline: 2.5em 1.875em;
     background: var(--headerBg);
     color: whitesmoke;
 
-    justify-content: space-between;
+    transition: 1s ease;
+}
 
-    transition: 1s ease-in;
+header {
+    inset: 0;
+    height: 4.75em;
+
+    justify-content: space-between;
+}
+
+footer {
+    bottom: 0;
+    height: 2em;
+    width: 100vw;
+
+    justify-content: center;
 }
 
 .logo {
     font-size: 18px;
     margin-left: 0;
-
+    
     cursor: default;
+}
+
+
+.logo,
+.logo:hover span,
+footer {
+    font-family: 'Bubble', sans-serif;
+}
+
+footer span,
+.logo span,
+.logo:hover {
+    font-family: 'BubbleOutline', sans-serif;
 }
 
 .header_btns {
@@ -157,7 +181,7 @@ select:focus {
 
 /*-------------------- Gallery --------------------*/
 .gallery {
-    margin: 5.75em 1em 1em 1em;
+    margin: 5.75em 1em 3em 1em;
     background-color: var(--galleryBg);
     border-radius: 1em;
     overflow: hidden;
@@ -287,6 +311,7 @@ img:hover {
 .editor {
     display: none;
     background-color: var(--GeneralAndSearchBarBg);
+    margin-block: 0 3em;
 }
 
 .editor-container {

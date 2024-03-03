@@ -21,7 +21,6 @@ function renderText() {
 }
 
 function onMoveLine(ev) {
-    // ev.preventDefault()
     moveLine(ev.key)
     renderMeme()
 }

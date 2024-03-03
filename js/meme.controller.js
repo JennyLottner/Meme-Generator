@@ -2,6 +2,7 @@
 
 function onInit() {
     renderGallery()
+    loadFonts()
 }
 
 function renderMeme() {

@@ -105,6 +105,8 @@ function setAlignment(val) {
 
 function setFont(val) {
     gMeme.lines[gMeme.selectedLineIdx].font = val
+
+
 }
 
 function setUnderline() {
@@ -143,6 +145,15 @@ function getMemeLine() {
 
 function getImg() {
     return gMeme.imgURL
+}
+
+function loadFonts() {
+    new FontFace('Poppins', 'url(/fonts/Poppins/Poppins-Regular.ttf)').load()
+    new FontFace('Bubble', 'url(/fonts/Bubble/Bubble.ttf)').load()
+    new FontFace('SmallTop', 'url(/fonts/SmallTop/SmallTop.ttf)').load()
+    new FontFace('HandWriting', 'url(/fonts/HandWriting/HandWriting.ttf)').load()
+    new FontFace('BubbleOutline', 'url(/fonts/BubbleDemo/BubbleDemoOutline.ttf)').load()
+    new FontFace('BubbleRegular', 'url(/fonts/BubbleDemo/BubbleDemoRegular.ttf)').load()
 }
 ////////////////////////////////////////////////////
 // function moveItem(dx, dy) {
