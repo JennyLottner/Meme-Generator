@@ -95,11 +95,11 @@ function setFontSize(val) {
     if (val === '+') gMeme.lines[gMeme.selectedLineIdx].size++
 }
 
-function setAlignment(val) { 
-    const lineWidth = gCtx.measureText(gMeme.lines.txt).width
+function setAlignment(val) {
+    const lineWidth = gCtx.measureText(gMeme.lines[gMeme.selectedLineIdx].txt).width
 
     if (val === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 0
-    if (val === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - (lineWidth / 2)
+    if (val === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - lineWidth
     if (val === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = (gElCanvas.width / 2) - (lineWidth / 2)
 }
 
