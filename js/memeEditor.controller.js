@@ -90,6 +90,7 @@ function downloadCanvas(elLink) {
 }
 
 function onFacebookShare() {
+    renderMeme(false)
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
 
     function onSuccess(uploadedImgUrl) {

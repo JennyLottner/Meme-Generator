@@ -70,8 +70,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    cursor: pointer;
 }
 
 :is(.upload-btn, .saved-btn):active {

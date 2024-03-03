@@ -79,8 +79,6 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    cursor: pointer;
 }
 
 .btns1 .btn,

@@ -1,8 +1,9 @@
 'use strict'
+let gPrintable
 
 function renderText() {
-    const { lines } = getMeme()
-    lines.forEach(line => {
+    const { lines , selectedLineIdx } = getMeme()
+    lines.forEach((line, idx ) => {
         gCtx.font = `${line.size}px ${line.font}, sans-serif`
         gCtx.textBaseline = 'bottom'
         
@@ -16,6 +17,16 @@ function renderText() {
 
         if (line.underline) {
             drawUnderline(line)
+        }
+
+        if (idx === selectedLineIdx) {
+        const measuredLine = gCtx.measureText(line.txt);
+        const lineHeight = measuredLine.actualBoundingBoxAscent + measuredLine.actualBoundingBoxDescent
+        gCtx.beginPath()
+        gCtx.strokeStyle = "black"
+        gCtx.setLineDash([5, 5])
+        gCtx.strokeRect(x - 2, y + 2, measuredLine.width + 4 , -lineHeight - 4)
+        gCtx.closePath()
         }
     })
 }
