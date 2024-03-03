@@ -18,7 +18,7 @@ function loadImg(callback) {
 }
 
 function resizeCanvasContainer() {
-    const elContainer = document.querySelector('.canvas-container')
+    const elContainer = document.querySelector('.canvas-inner-container')
 
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight

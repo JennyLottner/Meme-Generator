@@ -11,11 +11,11 @@
 
     /*gallery*/
     --galleryBg: #383B42;
-    --keyWordsBarBg: #88898D;
 
     /*editor*/
     --editFontBg: #19A59F;
     --editFontShadow: #308B87;
+    --lightGrayShadow: #88898D;
 }
 
 * {
@@ -93,7 +93,7 @@ select:focus {
     background: var(--headerBg);
     opacity: 0.9;
 
-    justify-content: center;
+    justify-content: space-evenly;
     transition: 0.3s;
 }
 
@@ -136,10 +136,11 @@ select:focus {
     width: 1.25em;
     height: 0.1875em;
     border-radius: 1em;
+    background-color: var(--headerGreen);
     margin: 0.3125em auto;
+
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: var(--headerGreen);
 }
 
 .hamburger.active .bar:nth-child(1) {
@@ -171,8 +172,8 @@ select:focus {
 
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1.4375em;
-
+    column-gap: 1.4375em;
+    row-gap: 0.1em;
 
     transition: 1s ease-in;
 }
@@ -209,9 +210,12 @@ select:focus {
 }
 
 .gallery-btns {
-    width: 20em;
+    width: 100%;
+
     gap: 0.3125em;
     justify-content: space-between;
+
+    transition: 1s;
 }
 
 .upload-btn,
@@ -220,7 +224,7 @@ select:focus {
     border-radius: 2em;
     background: var(--headerBg);
     color: whitesmoke;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -233,7 +237,7 @@ select:focus {
 }
 
 .upload-btn {
-    width: 9em; 
+    width: 9em;
 }
 
 .saved-btn {
@@ -263,7 +267,7 @@ img {
 
 img:hover {
     scale: 1.1;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .img-container {
@@ -278,6 +282,7 @@ img:hover {
     background-color: rgba(249, 121, 121, 0.5);
     border-radius: 50%;
 }
+
 /*--------------------- Editor --------------------*/
 .editor {
     display: none;
@@ -285,12 +290,15 @@ img:hover {
 }
 
 .editor-container {
-    margin-block: 5.75em 3rem;
+    margin-block: 5.75em 3em;
+    margin-inline: 1em;
+
     flex-direction: column;
     justify-content: space-evenly;
+    gap: 1em;
     row-gap: 1.4375em;
 
-    transition: 1s ease-in;
+    transition: 1s ease;
 }
 
 .editor-container>* {
@@ -299,16 +307,36 @@ img:hover {
 }
 
 .actions-container {
-    padding: 1.275rem 2.5rem;
+    padding: 1.275rem 1em;
+    width: 100%;
 
     flex-direction: column;
     row-gap: 1.375rem;
+
+    transition: 1s;
 }
 
-.btns1,
-.btns3 {
+.canvas-outer-container {
+    padding: 0.5em;
+    box-shadow: 0.1875em 0.1875em 0.1875em var(--lightGrayShadow), -0.1875em -0.1875em 0.1875em var(--lightGrayShadow);
+}
+
+.canvas-inner-container,
+canvas {
+    width: 100%;
+    display: block;
+    border-radius: 1em;
+}
+
+.btns1 {
     gap: 1.25em;
     justify-content: center;
+}
+
+.btns3 {
+    width: 100%;
+    gap: 0.5em;
+    justify-content: space-between;
 }
 
 .btns2 {
@@ -320,7 +348,7 @@ img:hover {
     gap: 1.5em;
 }
 
-.actions-container input {
+.actions-container .text-input {
     border: 0;
     border-radius: 1rem;
     height: 2.2rem;
@@ -404,12 +432,20 @@ img:hover {
 .download-btn {
     width: 7.1rem;
     color: black;
-    text-decoration:none;
+    text-decoration: none;
     background-color: #8F44BB;
 }
 
 /*-------------------- Desktop ---------------------*/
+@media (width > 400px) {
+    .actions-container {
+        padding: 1.275rem 2em;
+        width: auto;
+    }
+}
+
 @media (width > 540px) {
+
     /*-------- Header --------*/
     .header_bar {
         margin-block-start: 0.9375em;
@@ -430,12 +466,12 @@ img:hover {
     .header_btns {
         inset: auto;
         background: transparent;
+        width: 40%;
 
         flex-direction: row;
         gap: 1.4375em;
 
         position: relative;
-        width: 60%;
     }
 
     .header_btns .btn {
@@ -452,6 +488,10 @@ img:hover {
         padding: 1.5625em;
     }
 
+    .gallery-btns {
+        width: 20em;
+    }
+
     .search-container {
         height: 3.75em;
         margin-block-end: 3.125em;
@@ -459,13 +499,10 @@ img:hover {
         flex-wrap: nowrap;
     }
 
-    .key-words-container {
-        width: auto;
-    }
-
     .imgs-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5em;
+        column-gap: 1em;
+        row-gap: 1.5em;
     }
 
     img {
@@ -475,7 +512,7 @@ img:hover {
 
     /*-------- Editor --------*/
     .editor-container {
-        margin-block-start: 7em;
+        margin-block-start: 8em;
     }
 }
 
@@ -483,7 +520,6 @@ img:hover {
 
     /*-------- Editor --------*/
     .editor-container {
-        margin-block-start: 8em;
         flex-direction: row;
     }
 }
