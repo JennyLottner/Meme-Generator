@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src='https://kit.fontawesome.com/04cf2c934e.js' crossorigin='anonymous'></script>
+</head>
+
+<body onload="onInit()">
+    <header class="header_bar flex">
+        <div class="logo">LOGO</div>
+
+        <ul class="header_btns flex">
+            <li onclick="onGallery()" class="btn gallery_btn">Gallery</li>
+            <li onclick="onAbout()" class="btn about_btn">About</li>
+        </ul>
+
+        <div onclick="toggleMenu()" class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <section class="gallery">
+
+        <section class="search-container flex">
+            <div class="search-bar flex">
+                <input type="text" placeholder="Search">
+                <i class="fa-solid fa-magnifying-glass fa-2xl"></i>
+            </div>
+            <div class="gallery-btns flex">
+                <button onclick="renderSaved()" class="btn saved-btn"><span>Saved</span></button>
+                <input type="file" id="uploadInput" accept="image/*" onchange="onImgUpload(event)" style="display: none;">
+                <button onclick="document.getElementById('uploadInput').click()" class="btn upload-btn"><span>Upload Image</span></button>
+            </div>
+        </section>
+
+        <section class="imgs-container grid"></section>
+    </section>
+
+    <section class="editor">
+        <div class='editor-container flex'>
+
+            <section class="canvas-container">
+                <canvas width="350" height="350"></canvas>
+            </section>
+
+            <section class="actions-container flex">
+                <input type="text" name="text" placeholder="Text Here" oninput="onChangeLine(this)" class="text-input">
+                <div class="btns1 flex">
+                    <button onclick="onSwitchLines()" class="btn switch-btn"><i class="fa-solid fa-arrows-up-down"></i></button>
+                    <button onclick="onAddLineTxt()" class="btn add-btn"><i class="fa-solid fa-plus"></i></button>
+                    <button onclick="onDeleteLine()" class="btn remove-btn"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="btns2 grid">
+                    <button onclick="onFontSize('+')" class="btn larger-btn"><span>A<sup>+</sup></span></button>
+                    <button onclick="onFontSize('-')" class="btn smaller-btn"><span>A<sup>-</sup></span></button>
+                    <button onclick="onAlignment('left')" class="btn left-btn"><i class="fa-solid fa-align-left"></i></button>
+                    <button onclick="onAlignment('center')" class="btn center-btn"><i class="fa-solid fa-align-center"></i></button>
+                    <button onclick="onAlignment('right')" class="btn right-btn"><i class="fa-solid fa-align-right"></i></button> 
+                    <select name="font-btn" id="font-btn" class="font-btn" onchange="onFont(this)">
+                        <option value="Ariel">Ariel</option>
+                        <option value="Segoe UI">Segoe UI</option>
+                        <option value="Poppins">Poppins</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Lucida Sans">Lucida</option>
+                    </select>
+                    <button onclick="onUnderline()" class="btn underline-btn"><i class="fa-solid fa-underline"></i></button>
+                    <label for="stroke-color" class="btn stroke-color-btn"><i class="fa-solid fa-palette"></i></label>
+                    <input type="color" name="stroke-color" id="stroke-color" oninput="onStrokeColor(this)" class="stroke-color-input" style="display: none;">
+
+                    <label for="fill-color" class="btn fill-color-btn"><i class="fa-solid fa-fill-drip"></i></label>
+                    <input type="color" name="fill-color" id="fill-color" oninput="onFillColor(this)" class="fill-color-input" style="display: none;">
+                </div>
+                <div class="btns3 flex">
+                    <button onclick="onSave()" class="btn save-btn"><i class="fa-solid fa-download"></i>Save</button>
+                    <button onclick="onFacebookShare()" class="btn share-btn flex"><i class="fa-solid fa-share-nodes"></i>Share</button>
+                    <a href="#" class="btn download-btn flex" onclick="downloadImg(this)" download="my-Meme.jpg"><i class="fa-solid fa-floppy-disk"></i>Download</a>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/editor.service.js"></script>
+    <script src="js/memeGallery.controller.js"></script>
+    <script src="js/textEditor.controller.js"></script>
+    <script src="js/memeEditor.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
+</body>
+
+</html>
