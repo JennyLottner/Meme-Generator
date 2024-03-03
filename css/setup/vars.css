@@ -1,0 +1,16 @@
+:root {
+    --GeneralAndSearchBarBg: #22252C;
+    /*header*/
+    --headerGreen: #2DB879;
+    --headerBlue: #0F9AB4;
+    --headerBg: linear-gradient(to left, var(--headerGreen), var(--headerBlue));
+    --headerGreenShadow: #1c774ea2;
+
+    /*gallery*/
+    --galleryBg: #383B42;
+
+    /*editor*/
+    --editFontBg: #19A59F;
+    --editFontShadow: #308B87;
+    --lightGrayShadow: #88898D;
+}

@@ -1,0 +1,153 @@
+header,
+footer {
+    position: fixed;
+    padding-inline: 2.5em 1.875em;
+    background: var(--headerBg);
+    color: whitesmoke;
+
+    transition: 1s ease;
+}
+
+header {
+    inset: 0;
+    height: 4.75em;
+
+    justify-content: space-between;
+}
+
+footer {
+    bottom: 0;
+    height: 2em;
+    width: 100vw;
+
+    justify-content: center;
+}
+
+.logo {
+    font-size: 18px;
+    margin-left: 0;
+    
+    cursor: default;
+}
+
+
+.logo,
+.logo:hover span,
+footer {
+    font-family: 'Bubble', sans-serif;
+}
+
+footer span,
+.logo span,
+.logo:hover {
+    font-family: 'BubbleOutline', sans-serif;
+}
+
+.header_btns {
+    flex-direction: column;
+    gap: 0;
+
+    position: fixed;
+    inset: 70px auto auto -100%;
+    width: 100%;
+    background: var(--headerBg);
+    opacity: 0.9;
+
+    justify-content: space-evenly;
+    transition: 0.3s;
+}
+
+.header_btns .btn {
+    font-size: 20px;
+    border-radius: 1.1em;
+    margin-block: 1em;
+    padding-inline: 1.1em;
+    padding-block: 0.3em;
+
+    cursor: pointer;
+}
+
+.header_btns .btn:active {
+    scale: 0.9;
+}
+
+.header_btns.active {
+    inset-inline-start: 0;
+}
+
+.header_btns .btn:hover {
+    color: var(--headerGreen);
+    background-color: whitesmoke;
+    box-shadow: 0 0.1875em 0.3125em var(--headerGreenShadow);
+}
+
+.hamburger {
+    background-color: whitesmoke;
+    border-radius: 50%;
+    height: 2.8em;
+    width: 2.8em;
+    padding-block-start: 0.51em;
+
+    display: block;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 1.25em;
+    height: 0.1875em;
+    border-radius: 1em;
+    background-color: var(--headerGreen);
+    margin: 0.3125em auto;
+
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(0.5em) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-0.5em) rotate(-45deg);
+}
+
+@media (width > 540px) {
+    .header_bar {
+        margin-block-start: 0.9375em;
+        margin-inline: 1em;
+        padding-inline: 5.3125em;
+        border-radius: 2.5em;
+    }
+
+    .header_bar::before {
+        content: '';
+        height: 0.9375em;
+        width: 100vw;
+        position: fixed;
+        inset: 0;
+        background: var(--GeneralAndSearchBarBg);
+    }
+
+    .header_btns {
+        inset: auto;
+        background: transparent;
+        width: 40%;
+
+        flex-direction: row;
+        gap: 1.4375em;
+
+        position: relative;
+    }
+
+    .header_btns .btn {
+        margin-block: 0em;
+    }
+
+    .hamburger {
+        display: none;
+    }
+}

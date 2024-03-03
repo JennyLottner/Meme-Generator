@@ -1,0 +1,11 @@
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    justify-items: center;
+
+    transition: 1s ease-in;
+}
