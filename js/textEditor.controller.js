@@ -20,12 +20,12 @@ function renderText() {
         }
 
         if (idx === selectedLineIdx) {
-        const measuredLine = gCtx.measureText(line.txt);
+        const measuredLine = gCtx.measureText(line.txt)
         const lineHeight = measuredLine.actualBoundingBoxAscent + measuredLine.actualBoundingBoxDescent
         gCtx.beginPath()
         gCtx.strokeStyle = "black"
         gCtx.setLineDash([5, 5])
-        gCtx.strokeRect(x - 2, y + 2, measuredLine.width + 4 , -lineHeight - 4)
+        gCtx.strokeRect(x - 2, y + 2, measuredLine.width + 4 , -lineHeight - 6)
         gCtx.closePath()
         }
     })

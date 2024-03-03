@@ -11,7 +11,7 @@ function renderMeme() {
 
     loadImg(renderText)
     resizeCanvasContainer()
-    // addListeners()
+    addListeners()
 }
 ///////////////////////////////////////////////////////
 function onChosenImg(imgId) {

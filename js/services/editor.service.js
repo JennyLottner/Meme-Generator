@@ -23,6 +23,7 @@ var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'animal'] },
 { id: 17, url: 'img/17.jpg', keywords: ['politician'] },
 { id: 18, url: 'img/18.jpg', keywords: ['politician'] }
 ]
+const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 
 function clearGMeme() {
     gMeme = {
@@ -156,19 +157,46 @@ function loadFonts() {
     new FontFace('BubbleRegular', 'url(/fonts/BubbleDemo/BubbleDemoRegular.ttf)').load()
 }
 ////////////////////////////////////////////////////
-// function moveItem(dx, dy) {
-//     gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
-//     gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
-// }
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+    if (TOUCH_EVENTS.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
+}
 
-// function isItemClicked(clickedPos) {
-//     const { pos } = gMeme.lines[gMeme.selectedLineIdx]
-//     // Calc the distance between two dots
-//     const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2)
-//     return distance <= gMeme.lines[gMeme.selectedLineIdx].size
-// }
+function moveItem(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
+    gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+}
 
-// function itemDragSetOrGet(isDrag) {
-//     if (isDrag) gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
-//     else return gMeme.lines[gMeme.selectedLineIdx].isDrag
-// }
+function isItemClicked(clickedPos) {
+    var lineClicked = false
+    gMeme.lines.forEach((line, idx) => {
+        const measuredLine = gCtx.measureText(line.txt)
+        const lineHeight = measuredLine.actualBoundingBoxAscent + measuredLine.actualBoundingBoxDescent
+
+        const distanceX = clickedPos.x >= line.pos.x && clickedPos.x <= (measuredLine.width + line.pos.x)
+        const distanceY = clickedPos.y <= line.pos.y && clickedPos.y >= (line.pos.y - lineHeight)
+
+        if (distanceX && distanceY) {
+            gMeme.selectedLineIdx = idx
+            lineClicked = true
+            return
+        }
+    })
+    return lineClicked
+}
+
+function itemDragSetOrGet(val) {
+    if (val === undefined) return gMeme.lines[gMeme.selectedLineIdx].isDrag
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = val
+}

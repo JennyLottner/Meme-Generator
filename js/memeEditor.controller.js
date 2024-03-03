@@ -4,8 +4,6 @@ let gElCanvas
 let gCtx
 let gStartPos
 
-const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
-
 function loadImg(callback) {
     const img = new Image()
     img.src = getImg()
@@ -24,66 +22,45 @@ function resizeCanvasContainer() {
     gElCanvas.height = elContainer.offsetHeight
 }
 
-// // EVENTS
-// function addListeners() {
-//     gElCanvas.addEventListener('mousedown', onDown)
-//     gElCanvas.addEventListener('mousemove', onMove)
-//     gElCanvas.addEventListener('mouseup', onUp)
+// EVENTS
+function addListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
 
-//     gElCanvas.addEventListener('touchstart', onDown)
-//     gElCanvas.addEventListener('touchmove', onMove)
-//     gElCanvas.addEventListener('touchend', onUp)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
+}
 
-//     window.addEventListener('resize', () => {  //for resizing
-//         resizeCanvasContainer()
-//         renderMeme()
-//     })
-// }
+// DRAG & DROP
+function onDown(ev) {
+    gStartPos = getEvPos(ev)
+    if (!isItemClicked(gStartPos)) return
 
-// function getEvPos(ev) {
-//     let pos = {
-//         x: ev.offsetX,
-//         y: ev.offsetY,
-//     }
-//     if (TOUCH_EVENTS.includes(ev.type)) {
-//         ev.preventDefault()
-//         ev = ev.changedTouches[0]
-//         pos = {
-//             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-//             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-//         }
-//     }
-//     return pos
-// }
+    itemDragSetOrGet(true)
+    renderEditorBtns()
+    gElCanvas.style.cursor = 'grabbing'
+}
 
-// // DRAG & DROP
-// function onDown(ev) {
-//     gStartPos = getEvPos(ev)
-//     if (!isItemClicked(gStartPos)) return
+function onMove(ev) {
+    if (!itemDragSetOrGet()) return
 
-//     itemDragSetOrGet(true)
-//     document.body.style.cursor = 'grabbing'
-// }
+    const pos = getEvPos(ev)
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    gStartPos = pos
 
-// function onMove(ev) {
-//     if (!itemDragSetOrGet()) return
+    moveItem(dx, dy)
+    renderMeme()
+}
 
-//     const pos = getEvPos(ev)
-//     const dx = pos.x - gStartPos.x
-//     const dy = pos.y - gStartPos.y
-//     gStartPos = pos
+function onUp() {
+    itemDragSetOrGet(false)
+    gElCanvas.style.cursor = 'grab'
+}
 
-//     moveItem(dx, dy)
-//     renderMeme()
-// }
-
-// function onUp() {
-//     itemDragSetOrGet(false)
-//     document.body.style.cursor = 'grab'
-// }
-
-
-// // Down&Up-Load
+// Download & Upload
 function downloadCanvas(elLink) {
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
