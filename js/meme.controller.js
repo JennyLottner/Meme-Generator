@@ -15,7 +15,7 @@ function renderMeme() {
 }
 ///////////////////////////////////////////////////////
 function onChosenImg(imgId) {
-    toggleGalleryEditor('E')
+    toggleGalleryEditorAbout('E')
     setImg(imgId)
     renderEditorBtns()
     renderMeme()
@@ -23,7 +23,7 @@ function onChosenImg(imgId) {
 
 function onChosenMeme(idx) {
     const meme = onLoad()[idx]
-    toggleGalleryEditor('E')
+    toggleGalleryEditorAbout('E')
     setMeme(meme)
     renderEditorBtns()
     renderMeme()
@@ -36,7 +36,7 @@ function onImgUpload(ev) {
         reader.onload = function (event) {
             const imageUrl = event.target.result
             setUploadedImg(imageUrl)
-            toggleGalleryEditor('E')
+            toggleGalleryEditorAbout('E')
             renderEditorBtns()
             renderMeme()
         }
@@ -55,7 +55,7 @@ function toggleMenu() {
 }
 
 function onGallery() {
-    toggleGalleryEditor('G')
+    toggleGalleryEditorAbout('G')
     renderGallery()
     clearGMeme()
 
@@ -63,23 +63,37 @@ function onGallery() {
     if (elBurger.classList.contains('active')) toggleMenu()
 }
 
-function toggleGalleryEditor(to) {
+function toggleGalleryEditorAbout(to) {
     const elGallery = document.querySelector('.gallery')
     const elEditor = document.querySelector('.editor')
+    const elAbout = document.querySelector('.about')
 
-    if (to === 'E') {
+    switch (to) {
+    case 'E':
         document.addEventListener('keydown', onMoveLine)
 
         elGallery.style.display = 'none'
         elEditor.style.display = 'block'
-    } else {
+        elAbout.style.display = 'none'
+        break
+    case 'G':
         document.removeEventListener('keydown', onMoveLine)
 
         elGallery.style.display = 'block'
         elEditor.style.display = 'none'
+        elAbout.style.display = 'none'
+        break
+
+    case 'A':
+        document.removeEventListener('keydown', onMoveLine)
+
+        elGallery.style.display = 'none'
+        elEditor.style.display = 'none'
+        elAbout.style.display = 'block'
+        break
     }
 }
 
 function onAbout() {
-    console.log(`What's this about?`)
+    toggleGalleryEditorAbout('A')
 }

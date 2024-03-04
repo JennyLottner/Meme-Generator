@@ -1,0 +1,28 @@
+.about {
+    display: none;
+    margin: 5.75em 1em 3em 1em;
+    background-color: var(--galleryBg);
+    color: whitesmoke;
+    border-radius: 1em;
+    padding: 1.25em;
+    font-family: bubble, sans-serif;
+    letter-spacing: 0.05em;
+
+    cursor: pointer;
+}
+
+.about-container {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-title {
+    color: var(--headerBlue);
+}
+
+@media (width > 540px) {
+    .about {
+        margin-block-start: 6.75em;
+        padding: 1.5625em;
+    }
+}

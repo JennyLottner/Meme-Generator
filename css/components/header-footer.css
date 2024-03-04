@@ -4,8 +4,6 @@ footer {
     padding-inline: 2.5em 1.875em;
     background: var(--headerBg);
     color: whitesmoke;
-
-    transition: 1s ease;
 }
 
 header {
@@ -21,6 +19,8 @@ footer {
     width: 100vw;
 
     justify-content: center;
+
+    cursor: default;
 }
 
 .logo {
