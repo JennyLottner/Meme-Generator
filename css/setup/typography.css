@@ -1,29 +1,29 @@
 @font-face {
     font-family: Poppins;
-    src: url(/fonts/Poppins/Poppins-Regular.ttf);
+    src: url(../../fonts/Poppins/Poppins-Regular.ttf);
 }
 
 @font-face {
     font-family: Bubble;
-    src: url(/fonts/Bubble/Bubble.ttf);
+    src: url(../../fonts/Bubble/Bubble.ttf);
 }
 
 @font-face {
     font-family: SmallTop;
-    src: url(/fonts/SmallTop/SmallTop.ttf);
+    src: url(../../fonts/SmallTop/SmallTop.ttf);
 }
 
 @font-face {
     font-family: HandWriting;
-    src: url(/fonts/HandWriting/HandWriting.ttf);
+    src: url(../../fonts/HandWriting/HandWriting.ttf);
 }
 
 @font-face {
     font-family: BubbleOutline;
-    src: url(/fonts/BubbleDemo/BubbleDemoOutline.ttf);
+    src: url(../../fonts/BubbleDemo/BubbleDemoOutline.ttf);
 }
 
 @font-face {
     font-family: BubbleRegular;
-    src: url(/fonts/BubbleDemo/BubbleDemoRegular.ttf);
+    src: url(../../fonts/BubbleDemo/BubbleDemoRegular.ttf);
 }
